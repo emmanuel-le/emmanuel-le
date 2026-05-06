@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Emanuel Obasi Chidiadi — Electrical & Electronics Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:        #0a0e0c;
+    --panel:     #0f1510;
+    --border:    #1e3024;
+    --green:     #00e87a;
+    --green-dim: #00a855;
+    --amber:     #f0a500;
+    --amber-dim: #a06e00;
+    --text:      #c8d8cc;
+    --muted:     #5a7060;
+    --white:     #eef4f0;
+    --mono:      'Share Tech Mono', monospace;
+    --sans:      'Barlow', sans-serif;
+    --cond:      'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,232,122,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,232,122,.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 320px; height: 100vh;
+    background:
+      linear-gradient(90deg, transparent 39px, rgba(0,232,122,.07) 39px, rgba(0,232,122,.07) 40px, transparent 40px),
+      linear-gradient(180deg, transparent 79px, rgba(0,168,85,.05) 79px, rgba(0,168,85,.05) 80px, transparent 80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    animation: fadeDown .7s ease both;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 200px; height: 1px;
+    background: linear-gradient(90deg, var(--green), transparent);
+  }
+
+  .badge-line {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: .12em;
+    margin-bottom: 10px;
+    opacity: .85;
+  }
+  .badge-line::before { content: '// '; color: var(--muted); }
+
+  h1 {
+    font-family: var(--cond);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -.01em;
+    margin-bottom: 10px;
+  }
+
+  .title-tag {
+    font-family: var(--cond);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--green-dim);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+
+  .contact-item {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .contact-item span { color: var(--green); font-size: 10px; }
+
+  .domains {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 24px 0 0;
+    animation: fadeUp .7s .15s ease both;
+  }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    padding: 4px 12px;
+    border-radius: 2px;
+    border: 1px solid;
+    background: transparent;
+    transition: background .2s;
+  }
+  .chip.green { color: var(--green); border-color: var(--green); }
+  .chip.amber { color: var(--amber); border-color: var(--amber); }
+  .chip:hover { background: rgba(0,232,122,.06); }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+    margin-top: 40px;
+  }
+
+  .sidebar { display: flex; flex-direction: column; gap: 36px; }
+
+  .side-section { animation: fadeLeft .6s ease both; }
+
+  .s-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .s-label::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--amber-dim); }
+
+  .skill-group { margin-bottom: 16px; }
+  .skill-group-name {
+    font-family: var(--cond);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .skill-list { display: flex; flex-direction: column; gap: 7px; }
+
+  .skill-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .skill-name { font-size: 12.5px; color: var(--text); min-width: 130px; }
+  .bar-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--green), var(--green-dim));
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: growBar .8s .5s ease forwards;
+  }
+  @keyframes growBar { to { transform: scaleX(1); } }
+
+  .tool-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 2px;
+    transition: color .2s, border-color .2s;
+  }
+  .tool-tag:hover { color: var(--green); border-color: var(--green-dim); }
+
+  .edu-item { margin-bottom: 14px; }
+  .edu-degree {
+    font-family: var(--cond);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .edu-school { font-size: 12.5px; color: var(--text); }
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .cert-item {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--text);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cert-item::before { content: '◆'; color: var(--green); font-size: 7px; }
+
+  .main { display: flex; flex-direction: column; gap: 40px; }
+
+  .section { animation: fadeUp .6s ease both; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: var(--cond);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+  }
+
+  .exp-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    position: relative;
+    transition: border-left-color .2s;
+  }
+  .exp-card:hover { border-left-color: var(--amber); }
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40px; height: 3px;
+    background: var(--green);
+    opacity: .4;
+  }
+
+  .exp-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .exp-role {
+    font-family: var(--cond);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: .02em;
+  }
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    white-space: nowrap;
+  }
+  .exp-company {
+    font-size: 13px;
+    color: var(--green-dim);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-bullets li {
+    font-size: 13.5px;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .exp-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber-dim);
+    background: rgba(240,165,0,.06);
+    border: 1px solid rgba(240,165,0,.15);
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: .05em;
+  }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .proj-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 18px;
+    position: relative;
+    transition: border-color .2s, transform .2s;
+  }
+  .proj-card:hover { border-color: var(--green); transform: translateY(-2px); }
+
+  .proj-domain {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .proj-name {
+    font-family: var(--cond);
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .proj-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+  .proj-corner {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 12px; height: 12px;
+    border-top: 2px solid var(--green);
+    border-right: 2px solid var(--green);
+    opacity: .4;
+  }
+
+  .pub-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .pub-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    padding-top: 2px;
+  }
+  .pub-title { font-size: 13.5px; color: var(--text); font-weight: 500; }
+  .pub-venue { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .summary-text {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.75;
+    border-left: 2px solid var(--green);
+    padding-left: 16px;
+  }
+  .summary-text strong { color: var(--white); font-weight: 600; }
+
+  @keyframes fadeDown { from { opacity:0; transform: translateY(-20px); } to { opacity:1; transform: none; } }
+  @keyframes fadeUp   { from { opacity:0; transform: translateY(20px);  } to { opacity:1; transform: none; } }
+  @keyframes fadeLeft { from { opacity:0; transform: translateX(-16px); } to { opacity:1; transform: none; } }
+
+  .section:nth-child(1) { animation-delay: .1s; }
+  .section:nth-child(2) { animation-delay: .2s; }
+  .section:nth-child(3) { animation-delay: .3s; }
+  .section:nth-child(4) { animation-delay: .4s; }
+  .section:nth-child(5) { animation-delay: .5s; }
+  .side-section:nth-child(1) { animation-delay: .15s; }
+  .side-section:nth-child(2) { animation-delay: .25s; }
+  .side-section:nth-child(3) { animation-delay: .35s; }
+  .side-section:nth-child(4) { animation-delay: .45s; }
+  .side-section:nth-child(5) { animation-delay: .55s; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
+
+  @media print {
+    body { background: #fff; color: #111; }
+    body::before, body::after { display: none; }
+    .page-wrap { max-width: 100%; }
+    .exp-card, .proj-card { background: #f9f9f9; border-color: #ccc; }
+    .exp-card { border-left-color: var(--green-dim); }
+    .chip, .exp-tag, .tool-tag { color: #111; border-color: #555; }
+    .s-label, .section-title, h1, .exp-role, .proj-name, .edu-degree { color: #000; }
+    .summary-text, .exp-bullets li, .proj-desc { color: #222; }
+    .bar-fill { background: #333; }
+    .tool-tag { background: #eee; }
+  }
+
+  @media (max-width: 760px) {
+    .body-grid { grid-template-columns: 1fr; }
+    .proj-grid  { grid-template-columns: 1fr; }
+    header { grid-template-columns: 1fr; }
+    .contact-block { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ════════ HEADER ════════ -->
+  <header>
+    <div>
+      <div class="badge-line">electrical_engineer.profile | rev 2026.05</div>
+      <h1>Emanuel Obasi Chidiadi</h1>
+      <div class="title-tag">Electrical & Electronics Engineering · Power Systems · Industrial Automation · Embedded Systems · Solar PV</div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-item"><span>@</span>chidiadiobasiemmanuel@gmail.com</div>
+      <div class="contact-item"><span>☎</span>+234 907 889 1972</div>
+      <div class="contact-item"><span>⊕</span>Lagos, Nigeria</div>
+    </div>
+  </header>
+
+  <!-- domain chips -->
+  <div class="domains">
+    <div class="chip green">Power Distribution</div>
+    <div class="chip green">Motor Control</div>
+    <div class="chip green">PLC / SCADA</div>
+    <div class="chip amber">Solar PV Design</div>
+    <div class="chip amber">Analog Electronics</div>
+    <div class="chip amber">Embedded C</div>
+    <div class="chip green">IoT Systems</div>
+    <div class="chip amber">PCB / Circuit Design</div>
+    <div class="chip green">ML on Edge</div>
+  </div>
+
+  <!-- ════════ BODY ════════ -->
+  <div class="body-grid">
+
+    <!-- ════ SIDEBAR ════ -->
+    <aside class="sidebar">
+
+      <!-- Skills -->
+      <div class="side-section">
+        <div class="s-label">Core Competencies</div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Power & Motor Control</div>
+          <div class="skill-list">
+            <div class="skill-bar"><span class="skill-name">DOL / Star-Delta</span><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">VFD Commissioning</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">Power Distribution</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">Fault Diagnostics</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Industrial Automation</div>
+          <div class="skill-list">
+            <div class="skill-bar"><span class="skill-name">PLC (TIA Portal)</span><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">SCADA / WinCC</span><div class="bar-track"><div class="bar-fill" style="width:83%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">Field Instrumentation</span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">4-20mA / 0-10V</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Embedded & IoT</div>
+          <div class="skill-list">
+            <div class="skill-bar"><span class="skill-name">ESP32 / Arduino</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">C / C++ (Firmware)</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">MQTT / BLE</span><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">TinyML / Edge AI</span><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Analog & Power Electronics</div>
+          <div class="skill-list">
+            <div class="skill-bar"><span class="skill-name">DC-DC Converters</span><div class="bar-track"><div class="bar-fill" style="width:84%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">ADC / DAC Systems</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">Inverter Design</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div></div>
+            <div class="skill-bar"><span class="skill-name">LTspice / Proteus</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="side-section">
+        <div class="s-label">Tools & Platforms</div>
+        <div class="tool-cloud">
+          <span class="tool-tag">Siemens TIA Portal</span>
+          <span class="tool-tag">WinCC SCADA</span>
+          <span class="tool-tag">LTspice</span>
+          <span class="tool-tag">Proteus ISIS</span>
+          <span class="tool-tag">Arduino IDE</span>
+          <span class="tool-tag">ESP-IDF</span>
+          <span class="tool-tag">KiCad</span>
+          <span class="tool-tag">MATLAB/Simulink</span>
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">TensorFlow Lite</span>
+          <span class="tool-tag">MQTT Broker</span>
+          <span class="tool-tag">Node-RED</span>
+          <span class="tool-tag">Grafana</span>
+          <span class="tool-tag">Cisco Packet Tracer</span>
+        </div>
+      </div>
+
+      <!-- Protocols & Standards -->
+      <div class="side-section">
+        <div class="s-label">Protocols & Standards</div>
+        <div class="tool-cloud">
+          <span class="tool-tag">Modbus RTU/TCP</span>
+          <span class="tool-tag">PROFINET</span>
+          <span class="tool-tag">I²C / SPI / UART</span>
+          <span class="tool-tag">CAN Bus</span>
+          <span class="tool-tag">Ethernet/IP</span>
+          <span class="tool-tag">MQTT</span>
+          <span class="tool-tag">BLE 5.0</span>
+          <span class="tool-tag">RS-485</span>
+          <span class="tool-tag">TIA/EIA-568</span>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="side-section">
+        <div class="s-label">Education</div>
+        <div class="edu-item">
+          <div class="edu-degree">B.Eng. Electrical & Electronics Engineering</div>
+          <div class="edu-school">Adeleke University, Ede, Nigeria</div>
+          <div class="edu-year">2019 — 2024</div>
+        </div>
+      </div>
+
+      <!-- Certifications & Memberships -->
+      <div class="side-section">
+        <div class="s-label">Professional Memberships</div>
+        <div class="cert-item">Graduate Member — Nigerian Society of Engineers (GMNSE) · 2024</div>
+        <div class="cert-item">Member — International Association of Engineers (IAENG) · 2026</div>
+      </div>
+
+    </aside>
+
+    <!-- ════ MAIN ════ -->
+    <main class="main">
+
+      <!-- Summary -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <span class="section-title">Professional Profile</span>
+          <div class="section-line"></div>
+        </div>
+        <p class="summary-text">
+          Electrical and Electronics Engineer with <strong>hands-on industrial experience</strong> spanning power distribution, motor control systems, PLC-based automation, and solar PV installations.
+          Skilled in <strong>commissioning, fault diagnostics, and system optimization</strong> across production factory environments.
+          Growing expertise in <strong>IoT-enabled monitoring, data-driven fault detection, and embedded ML on edge devices</strong> for next-generation energy and automation systems.
+          Adept at bridging field-level instrumentation with networked control architectures.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <span class="section-title">Professional Experience</span>
+          <div class="section-line"></div>
+        </div>
+
+        <!-- Job 1: Kimberly Engineering -->
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Electrical & Automation Engineering Intern</div>
+            <div class="exp-date">2023</div>
+          </div>
+          <div class="exp-company">Kimberly Engineering Nigeria Plc · Lagos, Nigeria</div>
+          <ul class="exp-bullets">
+            <li>Supported industrial automation and instrumentation operations, performing <strong>field-level servicing, diagnostics, and preventive maintenance</strong> on production-critical systems.</li>
+            <li>Engineered and commissioned <strong>motor control systems</strong> including DOL, Star-Delta, and VFD configurations for single- and three-phase drives, optimizing performance and reliability.</li>
+            <li>Configured <strong>PLC-based control systems</strong> using Siemens TIA Portal, integrating I/O modules and PROFINET communication networks for deterministic real-time control.</li>
+            <li>Performed <strong>SCADA-based monitoring and diagnostics</strong> with WinCC, leveraging real-time data for fault detection and process optimization.</li>
+            <li>Calibrated and interfaced <strong>field instrumentation</strong> (NPN/PNP sensors, 4-20 mA / 0-10 V signal conditioning), ensuring control system integrity and measurement accuracy.</li>
+            <li>Executed system commissioning and <strong>compliance verification</strong> against design specifications, safety standards, and industrial protocols.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Siemens TIA Portal</span>
+            <span class="exp-tag">WinCC SCADA</span>
+            <span class="exp-tag">Motor Control</span>
+            <span class="exp-tag">PROFINET</span>
+            <span class="exp-tag">Field Instrumentation</span>
+            <span class="exp-tag">Commissioning</span>
+          </div>
+        </div>
+
+        <!-- Job 2: Rawnoid Engineering (2nd Internship) -->
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Electrical Engineering Intern — Solar PV & Power Systems</div>
+            <div class="exp-date">Jul 2022 — Sep 2022</div>
+          </div>
+          <div class="exp-company">Rawnoid Engineering Nigeria Plc · Lagos, Nigeria</div>
+          <ul class="exp-bullets">
+            <li>Engineered and sized <strong>solar PV systems</strong> through comprehensive load analysis, optimizing inverter selection, battery storage capacity, and overall system efficiency for residential and light commercial applications.</li>
+            <li>Installed and commissioned <strong>hybrid PV systems</strong>, integrating inverters, charge controllers, and Battery Management Systems (BMS) for reliable off-grid and grid-tied operation.</li>
+            <li>Performed <strong>fault diagnostics, troubleshooting, and preventive maintenance</strong> on deployed solar installations, improving system availability and performance metrics.</li>
+            <li>Designed and simulated <strong>electronic circuits in Proteus</strong>, validating system functionality and control logic prior to physical deployment.</li>
+            <li>Conducted <strong>energy audits and loss analysis</strong>, identifying inefficiencies and optimizing system capacity and power utilization.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">Solar PV Design</span>
+            <span class="exp-tag">Hybrid Inverters</span>
+            <span class="exp-tag">BMS</span>
+            <span class="exp-tag">Proteus Simulation</span>
+            <span class="exp-tag">Energy Audit</span>
+          </div>
+        </div>
+
+        <!-- Job 3: Rawnoid Engineering (1st Internship) -->
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Electrical Engineering Intern — Power Electronics & Embedded Systems</div>
+            <div class="exp-date">Jul 2021 — Sep 2021</div>
+          </div>
+          <div class="exp-company">Rawnoid Engineering Nigeria Plc · Lagos, Nigeria</div>
+          <ul class="exp-bullets">
+            <li>Modeled and analyzed <strong>DC-DC converter topologies</strong> (Buck, Boost, Buck-Boost) in LTspice, performing loop compensation, stability analysis (Bode plots, phase margin), and efficiency optimization.</li>
+            <li>Implemented <strong>high-frequency PWM control</strong> for power switches (MOSFETs/IGBTs), addressing switching losses, dead-time optimization, and EMI mitigation techniques.</li>
+            <li>Developed <strong>real-time embedded firmware in C</strong> on ESP32, integrating peripherals for deterministic control applications with synchronized data acquisition.</li>
+            <li>Configured <strong>timers, interrupts, and ADCs</strong> for high-accuracy sensor measurements, applying signal conditioning and noise mitigation strategies.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">LTspice</span>
+            <span class="exp-tag">DC-DC Converters</span>
+            <span class="exp-tag">PWM Control</span>
+            <span class="exp-tag">ESP32</span>
+            <span class="exp-tag">Embedded C</span>
+            <span class="exp-tag">Signal Conditioning</span>
+          </div>
+        </div>
+
+        <!-- Job 4: Core Integration -->
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Electrical Engineering Intern — Low-Voltage Systems</div>
+            <div class="exp-date">Jul 2020 — Sep 2020</div>
+          </div>
+          <div class="exp-company">Core Integration Engineering Nigeria Plc · Lagos, Nigeria</div>
+          <ul class="exp-bullets">
+            <li>Deployed and commissioned <strong>IP-based CCTV systems</strong>, including camera provisioning, NVR configuration, network integration, and secure remote access setup.</li>
+            <li>Implemented <strong>structured cabling systems</strong> (Cat5e/Cat6) with proper RJ45 termination, certification testing, and compliance with TIA/EIA standards.</li>
+            <li>Configured and maintained <strong>PABX/VoIP telephony systems</strong>, managing extensions, call routing, and system diagnostics.</li>
+            <li>Installed and calibrated <strong>intrusion detection systems</strong>, integrating PIR sensors, control panels, and alarm signaling mechanisms.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="exp-tag">CCTV / NVR</span>
+            <span class="exp-tag">Structured Cabling</span>
+            <span class="exp-tag">TIA/EIA Standards</span>
+            <span class="exp-tag">VoIP / PABX</span>
+            <span class="exp-tag">Intrusion Detection</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <span class="section-title">Technical Projects</span>
+          <div class="section-line"></div>
+        </div>
+        <div class="proj-grid">
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Analog Design · Power Systems</div>
+            <div class="proj-name">High-Resolution ADC Front-End for Power Monitoring</div>
+            <div class="proj-desc">Designed a precision analog front-end with anti-aliasing filter instrumentation amplifier for 24-bit ADC sampling of AC mains waveforms. Achieved SNR >100 dB for harmonic analysis in power quality monitoring.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Analog · Power Conversion</div>
+            <div class="proj-name">DAC-Controlled Programmable Bench Power Supply</div>
+            <div class="proj-desc">Built a 0-30V/0-5A linear power supply with 12-bit DAC voltage control and ADC feedback loop using ESP32. Implemented constant-voltage/constant-current modes with OLED display and USB-PD compatibility.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Power Electronics · Solar</div>
+            <div class="proj-name">Pure Sine Wave Inverter for Solar DC-AC Conversion</div>
+            <div class="proj-desc">Designed a 1.5kVA pure sine wave inverter using SPWM technique with H-bridge topology. Implemented closed-loop voltage regulation, overcurrent protection, and battery low-voltage cutoff for standalone solar applications.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Solar · Battery Systems</div>
+            <div class="proj-name">MPPT Solar Charge Controller with IoT Monitoring</div>
+            <div class="proj-desc">Developed a buck-converter-based MPPT charge controller using P&O algorithm on ESP32. Real-time telemetry (panel voltage, battery SOC, load current) streamed via MQTT to Node-RED dashboard with Grafana visualization.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Industrial Automation · Motor Control</div>
+            <div class="proj-name">Star-Delta Starter with PLC Automation & HMI</div>
+            <div class="proj-desc">Implemented automatic Star-Delta motor starter sequence on Siemens S7-1200 PLC with TIA Portal. Designed HMI panel for start/stop control, overload monitoring, and transition timing adjustment. Tested on 5HP induction motor.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Industrial Automation · SCADA</div>
+            <div class="proj-name">VFD Speed Control with SCADA Process Visualization</div>
+            <div class="proj-desc">Configured VFD for closed-loop speed control of conveyor system via PROFINET. Built WinCC SCADA interface showing real-time RPM, torque, and temperature trends with alarm management for fault conditions.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Embedded Systems · IoT</div>
+            <div class="proj-name">Vehicle Speed Monitoring & Violation Detection System</div>
+            <div class="proj-desc">Developed GPS+GSM-based vehicle speed monitor using ESP32 with u-blox NEO-6M module. Implemented geofencing, over-speed SMS alerts via SIM800L, and cloud logging to Firebase. Enclosure designed for automotive environment.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Embedded ML · Edge AI</div>
+            <div class="proj-name">Predictive Fault Detection for Induction Motors using TinyML</div>
+            <div class="proj-desc">Trained a lightweight 1D-CNN model on vibration+current signature data to classify bearing faults and stator winding anomalies. Deployed quantized INT8 model on ESP32-S3 using TensorFlow Lite Micro, achieving 93% inference accuracy at <50ms latency with real-time MQTT alerts.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Additional Projects & Soft Skills -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <span class="section-title">Additional Projects & Capabilities</span>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="proj-grid">
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Power Systems</div>
+            <div class="proj-name">Smart Energy Meter with Theft Detection</div>
+            <div class="proj-desc">Built a prepaid energy meter using ATMega328P with current/voltage sensors (ACS712, ZMPT101B). Implemented tamper detection via phase imbalance monitoring and GSM-based disconnection for non-payment scenarios.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Embedded · IoT</div>
+            <div class="proj-name">IoT Environmental Monitoring Station</div>
+            <div class="proj-desc">Multi-sensor node (DHT22, BMP280, MH-Z19 CO₂, LDR) on ESP8266 transmitting via MQTT. Designed PCB shield with battery management for solar-powered remote deployment. Data pipeline: Node-RED → InfluxDB → Grafana.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Analog · Instrumentation</div>
+            <div class="proj-name">Digital Multimeter with Auto-Ranging</div>
+            <div class="proj-desc">Designed a handheld DMM using ICL7106 ADC chip with auto-ranging circuitry for voltage, current, and resistance measurement. Custom PCB with rotary switch and LCD display in Proteus ARES layout.</div>
+          </div>
+
+          <div class="proj-card">
+            <div class="proj-corner"></div>
+            <div class="proj-domain">Professional Skills</div>
+            <div class="proj-name">Leadership & Collaboration</div>
+            <div class="proj-desc">Proven team collaborator with strong communication skills developed across multi-disciplinary engineering environments. Effective at cross-functional coordination between electrical, mechanical, and IT teams during system commissioning.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Publications / Technical Reports -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <span class="section-title">Technical Reports & Ongoing Development</span>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2024</div>
+          <div>
+            <div class="pub-title">Design and Implementation of an IoT-Based Condition Monitoring System for Industrial Induction Motors Using Edge ML</div>
+            <div class="pub-venue">Undergraduate Thesis — Adeleke University · Department of Electrical & Electronics Engineering</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2023</div>
+          <div>
+            <div class="pub-title">Performance Analysis of MPPT Algorithms (P&O vs. Incremental Conductance) Under Partial Shading Conditions for Off-Grid PV Systems</div>
+            <div class="pub-venue">Technical Report — Rawnoid Engineering Nigeria Plc · Solar Division</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2022</div>
+          <div>
+            <div class="pub-title">Comparative Study of DC-DC Converter Topologies for Battery Charging Applications: Efficiency, Ripple, and Transient Response</div>
+            <div class="pub-venue">Technical Report — Rawnoid Engineering Nigeria Plc · Power Electronics Lab</div>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-year">2026</div>
+          <div>
+            <div class="pub-title">Professional Development Pathway: TinyML Deployment on Resource-Constrained Microcontrollers for Predictive Maintenance</div>
+            <div class="pub-venue">Self-Directed Learning Track — TensorFlow Lite Micro · Edge Impulse · ESP32-S3 Platform</div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div><!-- /body-grid -->
+</div><!-- /page-wrap -->
+</body>
+</html>
